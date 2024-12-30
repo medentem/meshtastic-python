@@ -2084,6 +2084,7 @@ class MeshPacket(google.protobuf.message.Message):
     NEXT_HOP_FIELD_NUMBER: builtins.int
     RELAY_NODE_FIELD_NUMBER: builtins.int
     TX_AFTER_FIELD_NUMBER: builtins.int
+    COVERAGE_FILTER_FIELD_NUMBER: builtins.int
     to: builtins.int
     """
     The (immediate) destination for this packet
@@ -2191,6 +2192,10 @@ class MeshPacket(google.protobuf.message.Message):
     Timestamp after which this packet may be sent.
     Set by the firmware internally, clients are not supposed to set this.
     """
+    coverage_filter: builtins.bytes
+    """
+    A bloom filter storing the top 20 nodes for each hop using 2 hashes
+    """
     @property
     def decoded(self) -> global___Data:
         """
@@ -2219,9 +2224,10 @@ class MeshPacket(google.protobuf.message.Message):
         next_hop: builtins.int = ...,
         relay_node: builtins.int = ...,
         tx_after: builtins.int = ...,
+        coverage_filter: builtins.bytes = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["decoded", b"decoded", "encrypted", b"encrypted", "payload_variant", b"payload_variant"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["channel", b"channel", "decoded", b"decoded", "delayed", b"delayed", "encrypted", b"encrypted", "from", b"from", "hop_limit", b"hop_limit", "hop_start", b"hop_start", "id", b"id", "next_hop", b"next_hop", "payload_variant", b"payload_variant", "pki_encrypted", b"pki_encrypted", "priority", b"priority", "public_key", b"public_key", "relay_node", b"relay_node", "rx_rssi", b"rx_rssi", "rx_snr", b"rx_snr", "rx_time", b"rx_time", "to", b"to", "tx_after", b"tx_after", "via_mqtt", b"via_mqtt", "want_ack", b"want_ack"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["channel", b"channel", "coverage_filter", b"coverage_filter", "decoded", b"decoded", "delayed", b"delayed", "encrypted", b"encrypted", "from", b"from", "hop_limit", b"hop_limit", "hop_start", b"hop_start", "id", b"id", "next_hop", b"next_hop", "payload_variant", b"payload_variant", "pki_encrypted", b"pki_encrypted", "priority", b"priority", "public_key", b"public_key", "relay_node", b"relay_node", "rx_rssi", b"rx_rssi", "rx_snr", b"rx_snr", "rx_time", b"rx_time", "to", b"to", "tx_after", b"tx_after", "via_mqtt", b"via_mqtt", "want_ack", b"want_ack"]) -> None: ...
     def WhichOneof(self, oneof_group: typing.Literal["payload_variant", b"payload_variant"]) -> typing.Literal["decoded", "encrypted"] | None: ...
 
 global___MeshPacket = MeshPacket
