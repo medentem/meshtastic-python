@@ -796,10 +796,10 @@ class _ConstantsEnumTypeWrapper(google.protobuf.internal.enum_type_wrapper._Enum
     First enum must be zero, and we are just using this enum to
     pass int constants between two very different environments
     """
-    DATA_PAYLOAD_LEN: _Constants.ValueType  # 233
+    DATA_PAYLOAD_LEN: _Constants.ValueType  # 217
     """
     From mesh.options
-    note: this payload length is ONLY the bytes that are sent inside of the Data protobuf (excluding protobuf overhead). The 16 byte header is
+    note: this payload length is ONLY the bytes that are sent inside of the Data protobuf (excluding protobuf overhead). The 32 byte header is
     outside of this envelope
     """
 
@@ -813,10 +813,10 @@ ZERO: Constants.ValueType  # 0
 First enum must be zero, and we are just using this enum to
 pass int constants between two very different environments
 """
-DATA_PAYLOAD_LEN: Constants.ValueType  # 233
+DATA_PAYLOAD_LEN: Constants.ValueType  # 217
 """
 From mesh.options
-note: this payload length is ONLY the bytes that are sent inside of the Data protobuf (excluding protobuf overhead). The 16 byte header is
+note: this payload length is ONLY the bytes that are sent inside of the Data protobuf (excluding protobuf overhead). The 32 byte header is
 outside of this envelope
 """
 global___Constants = Constants
@@ -1904,7 +1904,7 @@ class MeshPacket(google.protobuf.message.Message):
     """
     A packet envelope sent/received over the mesh
     only payload_variant is sent in the payload portion of the LORA packet.
-    The other fields are either not sent at all, or sent in the special 16 byte LORA header.
+    The other fields are either not sent at all, or sent in the special 32 byte LORA header.
     """
 
     DESCRIPTOR: google.protobuf.descriptor.Descriptor

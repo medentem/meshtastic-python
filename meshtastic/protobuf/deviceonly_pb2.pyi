@@ -129,6 +129,37 @@ class UserLite(google.protobuf.message.Message):
 global___UserLite = UserLite
 
 @typing.final
+class RelayNode(google.protobuf.message.Message):
+    DESCRIPTOR: google.protobuf.descriptor.Descriptor
+
+    NUM_FIELD_NUMBER: builtins.int
+    LAST_HEARD_FIELD_NUMBER: builtins.int
+    SNR_FIELD_NUMBER: builtins.int
+    num: builtins.int
+    """
+    The node number
+    """
+    last_heard: builtins.int
+    """
+    Set to indicate the last time we received a packet from this node
+    """
+    snr: builtins.float
+    """
+    Returns the Signal-to-noise ratio (SNR) of the last received message,
+    as measured by the receiver. Return SNR of the last received message in dB
+    """
+    def __init__(
+        self,
+        *,
+        num: builtins.int = ...,
+        last_heard: builtins.int = ...,
+        snr: builtins.float = ...,
+    ) -> None: ...
+    def ClearField(self, field_name: typing.Literal["last_heard", b"last_heard", "num", b"num", "snr", b"snr"]) -> None: ...
+
+global___RelayNode = RelayNode
+
+@typing.final
 class NodeInfoLite(google.protobuf.message.Message):
     DESCRIPTOR: google.protobuf.descriptor.Descriptor
 
@@ -246,6 +277,7 @@ class DeviceState(google.protobuf.message.Message):
     RX_WAYPOINT_FIELD_NUMBER: builtins.int
     NODE_REMOTE_HARDWARE_PINS_FIELD_NUMBER: builtins.int
     NODE_DB_LITE_FIELD_NUMBER: builtins.int
+    RELAY_DB_FIELD_NUMBER: builtins.int
     version: builtins.int
     """
     A version integer used to invalidate old save files when we make
@@ -308,6 +340,12 @@ class DeviceState(google.protobuf.message.Message):
         New lite version of NodeDB to decrease memory footprint
         """
 
+    @property
+    def relay_db(self) -> google.protobuf.internal.containers.RepeatedCompositeFieldContainer[global___RelayNode]:
+        """
+        New coverage tracking vector
+        """
+
     def __init__(
         self,
         *,
@@ -321,9 +359,10 @@ class DeviceState(google.protobuf.message.Message):
         rx_waypoint: meshtastic.protobuf.mesh_pb2.MeshPacket | None = ...,
         node_remote_hardware_pins: collections.abc.Iterable[meshtastic.protobuf.mesh_pb2.NodeRemoteHardwarePin] | None = ...,
         node_db_lite: collections.abc.Iterable[global___NodeInfoLite] | None = ...,
+        relay_db: collections.abc.Iterable[global___RelayNode] | None = ...,
     ) -> None: ...
     def HasField(self, field_name: typing.Literal["my_node", b"my_node", "owner", b"owner", "rx_text_message", b"rx_text_message", "rx_waypoint", b"rx_waypoint"]) -> builtins.bool: ...
-    def ClearField(self, field_name: typing.Literal["did_gps_reset", b"did_gps_reset", "my_node", b"my_node", "no_save", b"no_save", "node_db_lite", b"node_db_lite", "node_remote_hardware_pins", b"node_remote_hardware_pins", "owner", b"owner", "receive_queue", b"receive_queue", "rx_text_message", b"rx_text_message", "rx_waypoint", b"rx_waypoint", "version", b"version"]) -> None: ...
+    def ClearField(self, field_name: typing.Literal["did_gps_reset", b"did_gps_reset", "my_node", b"my_node", "no_save", b"no_save", "node_db_lite", b"node_db_lite", "node_remote_hardware_pins", b"node_remote_hardware_pins", "owner", b"owner", "receive_queue", b"receive_queue", "relay_db", b"relay_db", "rx_text_message", b"rx_text_message", "rx_waypoint", b"rx_waypoint", "version", b"version"]) -> None: ...
 
 global___DeviceState = DeviceState
 
